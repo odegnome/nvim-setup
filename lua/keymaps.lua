@@ -1,0 +1,23 @@
+local opts = {
+    noremap = true,
+    silent = true,
+}
+
+vim.g.mapleader = ','
+
+-----------------
+-- Normal mode --
+-----------------
+
+-- Window navigation
+vim.keymap.set('n', '<C-h>', '<C-w>h', opts)
+vim.keymap.set('n', '<C-j>', '<C-w>j', opts)
+vim.keymap.set('n', '<C-k>', '<C-w>k', opts)
+vim.keymap.set('n', '<C-l>', '<C-w>l', opts)
+
+-- Back to netrw
+vim.keymap.set('n', '<leader>rw', vim.cmd.Ex)
+
+-- Scrolling
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
