@@ -19,6 +19,7 @@ require("lazy").setup({
         config = true,
         -- opts = {map_cr = true},
     },
+
     -- LSP manager
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
@@ -48,13 +49,14 @@ require("lazy").setup({
         dependencies = {
             "hrsh7th/cmp-buffer", -- source for text in buffer
             "hrsh7th/cmp-path", -- source for file system paths in commands
+            'hrsh7th/cmp-nvim-lsp', -- source for lsp
         },
         config = function()
             local cmp = require("cmp")
 
             cmp.setup({
                 completion = {
-                    completeopt = "menu,menuone,preview,noselect",
+                    completeopt = "menu,menuone,preview",
                 },
                 mapping = cmp.mapping.preset.insert({
                     ["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
@@ -67,6 +69,7 @@ require("lazy").setup({
                 }),
                 -- sources for autocompletion
                 sources = cmp.config.sources({
+                    { name = 'nvim_lsp'},
                     { name = "buffer" }, -- text within current buffer
                     { name = "path" }, -- file system paths
                 }),
