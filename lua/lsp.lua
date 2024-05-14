@@ -32,7 +32,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wl', function()
@@ -45,6 +45,9 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "qf", function()
         vim.lsp.buf.format({ async = true })
     end, bufopts)
+    -- vim.api.nvim_set_hl(0, 'FloatBorder', {bg='#5E81AC', fg='#5E81AC'})
+    -- vim.api.nvim_set_hl(0, 'NormalFloat', {bg='#5E81AC', fg='#5E81AC'})
+    -- #3B4252
 end
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -66,3 +69,5 @@ lspconfig.rust_analyzer.setup({
     },
     capabilities = capabilities,
 })
+
+require('luasnip.loaders.from_vscode').lazy_load()

@@ -20,6 +20,15 @@ require("lazy").setup({
         -- opts = {map_cr = true},
     },
 
+    -- Snippet
+    {
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        -- install jsregexp (optional!).
+        build = "make install_jsregexp"
+    },
+
     -- LSP manager
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
@@ -33,7 +42,7 @@ require("lazy").setup({
             local configs = require("nvim-treesitter.configs")
 
             configs.setup({
-                ensure_installed = { "c", "lua", "vim", "vimdoc", "rust"},
+                ensure_installed = { "c", "lua", "vim", "vimdoc", "rust", "python"},
                 sync_install = false,
                 highlight = { enable = true },
                 indent = { enable = true },  
@@ -53,23 +62,30 @@ require("lazy").setup({
         },
         config = function()
             local cmp = require("cmp")
+            local luasnip = require('luasnip')
 
             cmp.setup({
                 completion = {
-                    completeopt = "menu,menuone,preview",
+                    completeopt = "menu,menuone,preview,noselect",
+                },
+                snippet = {
+                  expand = function(args)
+                    luasnip.lsp_expand(args.body)
+                  end
                 },
                 mapping = cmp.mapping.preset.insert({
                     ["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
                     ["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
                     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-d>"] = cmp.mapping.scroll_docs(4),
-                    ["<C-y>"] = cmp.mapping.complete(), -- show completion suggestions
+                    ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
                     ["<C-e>"] = cmp.mapping.abort(), -- close completion window
-                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+                    ["<C-y>"] = cmp.mapping.confirm({ select = false }),
                 }),
                 -- sources for autocompletion
                 sources = cmp.config.sources({
-                    { name = 'nvim_lsp'},
+                    { name = 'nvim_lsp' },
+                    { name = 'luasnip' },
                     { name = "buffer" }, -- text within current buffer
                     { name = "path" }, -- file system paths
                 }),
