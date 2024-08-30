@@ -1,7 +1,10 @@
+vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=white]]
+vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
 require('mason').setup({})
 
 require('mason-lspconfig').setup({
-    ensure_installed = {'rust_analyzer', 'lua_ls'},
+    ensure_installed = {'rust_analyzer', 'lua_ls', 'pyright'},
 })
 
 -- Set different settings for different languages' LSP
@@ -23,6 +26,11 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+    -- LspDiagnosticsFloatingError = {fg='#41c1c7',style='bold'};
+    -- LspDiagnosticsFloatingWarning = {fg=color2,bg=none,style='bold'};
+    -- LspDiagnosticsFloatingInformation = {fg=color3,bg=none,style='italic'};
+    -- LspDiagnosticsFloatingHint = {fg=color4,bg=none,style='italic'};
+
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -42,7 +50,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set("n", "qf", function()
+    vim.keymap.set('n', 'qf', function()
         vim.lsp.buf.format({ async = true })
     end, bufopts)
     -- vim.api.nvim_set_hl(0, 'FloatBorder', {bg='#5E81AC', fg='#5E81AC'})
@@ -63,10 +71,33 @@ lspconfig.rust_analyzer.setup({
     settings = {
         ['rust-analyzer'] = {
             cargo = {
-                allFeatures = true,
+                allFeatures = false,
+                buildScripts = {
+                    enable = true,
+                },
+                procMacro = {
+                    enable = true,
+                },
             },
+            check = {
+                -- alternative: "clippy"
+                command = "check"
+            },
+            diagnostics = true,
         },
     },
+    capabilities = capabilities,
+})
+
+lspconfig.lua_ls.setup({
+	on_attach = on_attach,
+    filetypes = {"lua"},
+    capabilities = capabilities,
+})
+
+lspconfig.pyright.setup({
+	on_attach = on_attach,
+    filetypes = {"python"},
     capabilities = capabilities,
 })
 

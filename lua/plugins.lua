@@ -51,6 +51,15 @@ require("lazy").setup({
         end
     },
 
+    -- Comment
+    {
+        'numToStr/Comment.nvim',
+        opts = {
+            -- add any options here
+        },
+        lazy = false,
+    },
+
     -- shows the autocomplete menu
     {
         "hrsh7th/nvim-cmp",
@@ -76,8 +85,8 @@ require("lazy").setup({
                 mapping = cmp.mapping.preset.insert({
                     ["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
                     ["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
-                    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-                    ["<C-d>"] = cmp.mapping.scroll_docs(4),
+                    ["<C-f>"] = cmp.mapping.scroll_docs(-4),
+                    ["<C-b>"] = cmp.mapping.scroll_docs(4),
                     ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
                     ["<C-e>"] = cmp.mapping.abort(), -- close completion window
                     ["<C-y>"] = cmp.mapping.confirm({ select = false }),

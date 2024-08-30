@@ -21,3 +21,8 @@ vim.keymap.set('n', '<leader>rw', vim.cmd.Ex)
 -- Scrolling
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+
+-- colorschemes
+vim.keymap.set('n', '<leader>s', '<cmd>colorscheme slate<cr>')
+vim.keymap.set('n', '<leader>d', '<cmd>colorscheme peachpuff<cr>')

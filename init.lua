@@ -7,3 +7,7 @@ require('autocmds')
 -- setups and configs
 require('lsp')
 require('autopairs')
+require('comment')
+
+-- autocmds
+require('autocmds')
