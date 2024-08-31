@@ -1,1 +1,1 @@
-vim.cmd 'colorscheme slate'
+vim.cmd('colorscheme slate')

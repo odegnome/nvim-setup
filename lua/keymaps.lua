@@ -24,5 +24,7 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
 
 -- colorschemes
-vim.keymap.set('n', '<leader>s', '<cmd>colorscheme slate<cr>')
+-- '<cmd>hi DiagnosticError ctermfg=lightblue<cr>' sets the error message highlighting to light blue
+-- because the default is red which is not visible on slate colorscheme.
+vim.keymap.set('n', '<leader>s', '<cmd>colorscheme slate<cr><cmd>hi DiagnosticError ctermfg=lightblue<cr>')
 vim.keymap.set('n', '<leader>d', '<cmd>colorscheme peachpuff<cr>')

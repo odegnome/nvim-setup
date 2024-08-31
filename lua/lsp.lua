@@ -1,10 +1,10 @@
-vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=white]]
-vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+-- vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=white]]
+-- vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
 
 require('mason').setup({})
 
 require('mason-lspconfig').setup({
-    ensure_installed = {'rust_analyzer', 'lua_ls', 'pyright'},
+    ensure_installed = { 'rust_analyzer', 'lua_ls', 'pyright' },
 })
 
 -- Set different settings for different languages' LSP
@@ -53,9 +53,6 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'qf', function()
         vim.lsp.buf.format({ async = true })
     end, bufopts)
-    -- vim.api.nvim_set_hl(0, 'FloatBorder', {bg='#5E81AC', fg='#5E81AC'})
-    -- vim.api.nvim_set_hl(0, 'NormalFloat', {bg='#5E81AC', fg='#5E81AC'})
-    -- #3B4252
 end
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -65,8 +62,8 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- 1. use `:Mason` to install corresponding LSP
 -- 2. add configuration below
 lspconfig.rust_analyzer.setup({
-	on_attach = on_attach,
-    filetypes = {"rust"},
+    on_attach = on_attach,
+    filetypes = { "rust" },
     root_dir = util.root_pattern("Cargo.toml"),
     settings = {
         ['rust-analyzer'] = {
@@ -91,13 +88,20 @@ lspconfig.rust_analyzer.setup({
 
 lspconfig.lua_ls.setup({
     on_attach = on_attach,
-    filetypes = {"lua"},
+    filetypes = { "lua" },
     capabilities = capabilities,
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { "vim" }
+            }
+        }
+    }
 })
 
 lspconfig.pyright.setup({
-	on_attach = on_attach,
-    filetypes = {"python"},
+    on_attach = on_attach,
+    filetypes = { "python" },
     capabilities = capabilities,
 })
 
