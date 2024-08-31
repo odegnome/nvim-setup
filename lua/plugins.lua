@@ -45,7 +45,7 @@ require("lazy").setup({
                 ensure_installed = { "c", "lua", "vim", "vimdoc", "rust", "python"},
                 sync_install = false,
                 highlight = { enable = true },
-                indent = { enable = true },  
+                indent = { enable = true },
                 autopairs = { enable = true },
             })
         end

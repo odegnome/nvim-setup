@@ -90,7 +90,11 @@ lspconfig.rust_analyzer.setup({
 })
 
 lspconfig.lua_ls.setup({
+<<<<<<< Updated upstream
 	on_attach = on_attach,
+=======
+    on_attach = on_attach,
+>>>>>>> Stashed changes
     filetypes = {"lua"},
     capabilities = capabilities,
 })
