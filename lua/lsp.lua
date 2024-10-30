@@ -1,6 +1,3 @@
--- vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=white]]
--- vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
-
 require('mason').setup({})
 
 require('mason-lspconfig').setup({
@@ -81,6 +78,10 @@ lspconfig.rust_analyzer.setup({
                 command = "check"
             },
             diagnostics = true,
+            completion = {
+                addCallArgumentSnippets = true,
+                addCallParenthesis = true,
+            },
         },
     },
     capabilities = capabilities,
@@ -103,6 +104,13 @@ lspconfig.pyright.setup({
     on_attach = on_attach,
     filetypes = { "python" },
     capabilities = capabilities,
+})
+
+lspconfig.biome.setup({
+    on_attach = on_attach,
+    -- filetypes = { "json", "javascript", "typescript" }, -- default filetypes are being used.
+    capabilities = capabilities,
+    single_file_support = true,
 })
 
 require('luasnip.loaders.from_vscode').lazy_load()
