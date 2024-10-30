@@ -9,5 +9,3 @@ require('lsp')
 require('autopairs')
 require('comment')
 
--- autocmds
-require('autocmds')
