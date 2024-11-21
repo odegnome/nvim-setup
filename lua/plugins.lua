@@ -17,7 +17,7 @@ require("lazy").setup({
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         config = true,
-        -- opts = {map_cr = true},
+        -- opts = {},
     },
 
     -- Snippet
@@ -51,7 +51,7 @@ require("lazy").setup({
         end
     },
 
-    -- Comment
+    -- Commenting plugin
     {
         'numToStr/Comment.nvim',
         opts = {
