@@ -1,4 +1,6 @@
-require('mason').setup({})
+require('mason').setup({
+    PATH = "append",
+})
 
 require('mason-lspconfig').setup({
     ensure_installed = { 'rust_analyzer', 'lua_ls', 'pyright' },
@@ -23,11 +25,6 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-    -- LspDiagnosticsFloatingError = {fg='#41c1c7',style='bold'};
-    -- LspDiagnosticsFloatingWarning = {fg=color2,bg=none,style='bold'};
-    -- LspDiagnosticsFloatingInformation = {fg=color3,bg=none,style='italic'};
-    -- LspDiagnosticsFloatingHint = {fg=color4,bg=none,style='italic'};
-
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -65,7 +62,7 @@ lspconfig.rust_analyzer.setup({
     settings = {
         ['rust-analyzer'] = {
             cargo = {
-                allFeatures = false,
+                allFeatures = true,
                 buildScripts = {
                     enable = true,
                 },
@@ -106,9 +103,14 @@ lspconfig.pyright.setup({
     capabilities = capabilities,
 })
 
-lspconfig.biome.setup({
+lspconfig.ts_ls.setup({
     on_attach = on_attach,
     -- filetypes = { "json", "javascript", "typescript" }, -- default filetypes are being used.
+    capabilities = capabilities,
+})
+
+lspconfig.html.setup({
+    on_attach = on_attach,
     capabilities = capabilities,
     single_file_support = true,
 })

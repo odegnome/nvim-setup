@@ -2,11 +2,9 @@ require('options')
 require('plugins')
 require('keymaps')
 require('colorscheme')
-
--- setups and configs
-require('lsp')
+require('autocmds')
 require('autopairs')
 require('comment')
 
--- Set autocmds
-require('autocmds')
+-- setups and configs
+require('lsp')
