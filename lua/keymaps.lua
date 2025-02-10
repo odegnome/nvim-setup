@@ -1,6 +1,6 @@
 local opts = {
     noremap = true,
-    silent = true,
+    -- silent = true,
 }
 
 vim.g.mapleader = ','
@@ -28,3 +28,6 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 -- because the default is red which is not visible on slate colorscheme.
 vim.keymap.set('n', '<leader>s', '<cmd>colorscheme slate<cr><cmd>hi DiagnosticError ctermfg=lightblue<cr>')
 vim.keymap.set('n', '<leader>d', '<cmd>colorscheme peachpuff<cr>')
+
+-- Others
+vim.keymap.set('n', '<leader>nt', 'o•<Esc>')

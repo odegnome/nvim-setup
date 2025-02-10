@@ -20,7 +20,8 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']g', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<space>dl', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<space>dq', vim.diagnostic.setqflist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -47,6 +48,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'qf', function()
         vim.lsp.buf.format({ async = true })
     end, bufopts)
+    vim.keymap.set('n', '<leader>nt', 'o•<Esc><Plug>(comment_toggle_linewise_current)A')
 end
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = require('cmp_nvim_lsp').default_capabilities()

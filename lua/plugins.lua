@@ -85,7 +85,7 @@ require("lazy").setup({
                 mapping = cmp.mapping.preset.insert({
                     ["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
                     ["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
-                    ["<C-f>"] = cmp.mapping.scroll_docs(-4),
+                    ["<C-h>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-b>"] = cmp.mapping.scroll_docs(4),
                     ["<C-space>"] = cmp.mapping.complete(), -- show completion suggestions
                     ["<C-e>"] = cmp.mapping.abort(), -- close completion window
