@@ -1,5 +1,5 @@
 require('mason').setup({
-    PATH = "append",
+    PATH = "append"
 })
 
 require('mason-lspconfig').setup({
@@ -28,6 +28,10 @@ vim.keymap.set('n', '<space>dq', vim.diagnostic.setqflist, opts)
 local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    -- !-------
+    -- Inlay hints; works in Rust
+    -- -------!
+    -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
