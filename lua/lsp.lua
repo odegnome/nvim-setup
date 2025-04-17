@@ -52,7 +52,8 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'qf', function()
         vim.lsp.buf.format({ async = true })
     end, bufopts)
-    vim.keymap.set('n', '<leader>nt', 'o•<Esc><Plug>(comment_toggle_linewise_current)A')
+
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr})
 end
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
