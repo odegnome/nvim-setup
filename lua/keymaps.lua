@@ -16,15 +16,15 @@ vim.keymap.set('n', '<C-k>', '<C-w>k', opts)
 vim.keymap.set('n', '<C-l>', '<C-w>l', opts)
 
 -- Back to netrw
-vim.keymap.set('n', '<leader>rw', vim.cmd.Ex)
+vim.keymap.set('n', '<leader>rw', vim.cmd.Ex, opts)
 
 -- Scrolling
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
-vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', '<C-d>', '<C-d>zz', opts)
+vim.keymap.set('n', '<C-u>', '<C-u>zz', opts)
 
 
 -- colorschemes
 -- '<cmd>hi DiagnosticError ctermfg=lightblue<cr>' sets the error message highlighting to light blue
 -- because the default is red which is not visible on slate colorscheme.
-vim.keymap.set('n', '<leader>s', '<cmd>colorscheme slate<cr><cmd>hi DiagnosticError ctermfg=lightblue<cr>')
+vim.keymap.set('n', '<leader>s', '<cmd>colorscheme slate<cr><cmd>hi DiagnosticError ctermfg=lightblue<cr>', opts)
 -- vim.keymap.set('n', '<leader>d', '<cmd>colorscheme peachpuff<cr>')

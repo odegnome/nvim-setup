@@ -43,3 +43,4 @@ vim.opt.backup = false
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
+vim.diagnostic.config({ virtual_text = true })
