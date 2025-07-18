@@ -12,6 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    -- Java all-inclusive setup
+    -- "nvim-java/nvim-java",
+
     -- Auto pairs
     {
         "windwp/nvim-autopairs",
@@ -101,4 +104,11 @@ require("lazy").setup({
             })
         end,
     },
+
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim"
+        }
+    }
 })

@@ -1,3 +1,6 @@
+-- As per nvim-java, this needs to be done before lspconfig
+-- require('java').setup({})
+
 require('mason').setup({
     PATH = "append",
 })
@@ -50,7 +53,7 @@ local on_attach = function(client, bufnr)
         vim.lsp.buf.format({ async = true })
     end, bufopts)
 
-    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr})
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 end
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -118,5 +121,23 @@ lspconfig.html.setup({
     capabilities = capabilities,
     single_file_support = true,
 })
+
+lspconfig.cssls.setup({})
+
+-- lspconfig.jdtls.setup({
+--     settings = {
+--         java = {
+--             configuration = {
+--                 runtimes = {
+--                     {
+--                         name = "JavaSE-24",
+--                         path = "/Library/Java/JavaVirtualMachines/jdk-24.jdk",
+--                         default = true,
+--                     }
+--                 }
+--             }
+--         }
+--     }
+-- })
 
 require('luasnip.loaders.from_vscode').lazy_load()
