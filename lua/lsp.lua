@@ -15,7 +15,8 @@ require('mason-lspconfig').setup({
 -- How to use setup({}): https://github.com/neovim/nvim-lspconfig/wiki/Understanding-setup-%7B%7D
 --     - the settings table is sent to the LSP
 --     - on_attach: a lua callback function to run after LSP attaches to a given buffer
-local lspconfig = require('lspconfig')
+-- !------- DEPRECATED - Remove in future -------!
+-- local lspconfig = require('lspconfig')
 -- local util = require('lspconfig/util')
 
 -- Customized on_attach function
@@ -62,7 +63,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- How to add LSP for a specific language?
 -- 1. use `:Mason` to install corresponding LSP
 -- 2. add configuration below
-lspconfig.rust_analyzer.setup({
+vim.lsp.config("rust_analyzer", {
     on_attach = on_attach,
     filetypes = { "rust" },
     -- root_dir = util.root_pattern("Cargo.toml"),
@@ -79,9 +80,11 @@ lspconfig.rust_analyzer.setup({
             },
             check = {
                 -- alternative: "clippy"
-                command = "check"
+                command = "check",
             },
-            diagnostics = true,
+            diagnostics = {
+                disabled = { "unlinked-file" },
+            },
             completion = {
                 addCallArgumentSnippets = true,
                 addCallParenthesis = true,
@@ -91,7 +94,7 @@ lspconfig.rust_analyzer.setup({
     capabilities = capabilities,
 })
 
-lspconfig.lua_ls.setup({
+vim.lsp.config("lua_ls", {
     on_attach = on_attach,
     filetypes = { "lua" },
     capabilities = capabilities,
@@ -104,40 +107,24 @@ lspconfig.lua_ls.setup({
     }
 })
 
-lspconfig.pyright.setup({
+vim.lsp.config("pyright", {
     on_attach = on_attach,
     filetypes = { "python" },
     capabilities = capabilities,
 })
 
-lspconfig.ts_ls.setup({
+vim.lsp.config("ts_ls", {
     on_attach = on_attach,
     -- filetypes = { "json", "javascript", "typescript" }, -- default filetypes are being used.
     capabilities = capabilities,
 })
 
-lspconfig.html.setup({
+vim.lsp.config("html", {
     on_attach = on_attach,
     capabilities = capabilities,
     single_file_support = true,
 })
 
-lspconfig.cssls.setup({})
-
--- lspconfig.jdtls.setup({
---     settings = {
---         java = {
---             configuration = {
---                 runtimes = {
---                     {
---                         name = "JavaSE-24",
---                         path = "/Library/Java/JavaVirtualMachines/jdk-24.jdk",
---                         default = true,
---                     }
---                 }
---             }
---         }
---     }
--- })
+vim.lsp.config("cssls", {})
 
 require('luasnip.loaders.from_vscode').lazy_load()
