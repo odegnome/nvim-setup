@@ -1,6 +1,3 @@
--- As per nvim-java, this needs to be done before lspconfig
--- require('java').setup({})
-
 require('mason').setup({
     PATH = "append",
 })
@@ -44,7 +41,6 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, bufopts)
     vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
@@ -92,6 +88,9 @@ vim.lsp.config("rust_analyzer", {
         },
     },
     capabilities = capabilities,
+    init_options = {
+        positionEncodings = { "utf-8" },
+    },
 })
 
 vim.lsp.config("lua_ls", {
@@ -125,6 +124,12 @@ vim.lsp.config("html", {
     single_file_support = true,
 })
 
-vim.lsp.config("cssls", {})
+vim.lsp.config("cssls", {
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+-- Enable all configured servers
+vim.lsp.enable({ 'rust_analyzer', 'lua_ls', 'pyright', 'ts_ls', 'html', 'cssls' })
 
 require('luasnip.loaders.from_vscode').lazy_load()

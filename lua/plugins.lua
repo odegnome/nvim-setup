@@ -113,10 +113,29 @@ require("lazy").setup({
     },
 
     {
-        "github/copilot.vim"
+        "github/copilot.vim",
+        config = function()
+            vim.g.copilot_enabled = true
+        end
     },
 
     {
         "tpope/vim-fugitive",
+    },
+
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        dependencies = {
+            {
+                "nvim-lua/plenary.nvim"
+            },
+            {
+                "github/copilot.vim"
+            }
+        },
+        build = "make tiktoken",
+        opts = {
+        }
+
     }
 })
