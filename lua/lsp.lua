@@ -76,7 +76,7 @@ vim.lsp.config("rust_analyzer", {
             },
             check = {
                 -- alternative: "clippy"
-                command = "check",
+                command = "clippy",
             },
             diagnostics = {
                 disabled = { "unlinked-file" },
@@ -128,6 +128,12 @@ vim.lsp.config("cssls", {
     on_attach = on_attach,
     capabilities = capabilities,
 })
+
+-- ! ONLY SET WHEN USING coplit.lua & not copilot.vim !
+-- vim.lsp.config("copilot", {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+-- })
 
 -- Enable all configured servers
 vim.lsp.enable({ 'rust_analyzer', 'lua_ls', 'pyright', 'ts_ls', 'html', 'cssls' })
