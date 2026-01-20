@@ -55,6 +55,17 @@ end
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+-- Configure how the hover window looks like
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    {
+        border = "rounded",
+        max_width = math.floor(vim.o.columns * 0.5),
+        max_height = 50,
+        wrap = true,
+    }
+)
+
 -- Configure each language
 -- How to add LSP for a specific language?
 -- 1. use `:Mason` to install corresponding LSP

@@ -150,6 +150,14 @@ require("lazy").setup({
         "github/copilot.vim",
         config = function()
             vim.g.copilot_enabled = true
+            vim.g.copilot_no_tab_map = true
+            -- replace_keycodes is essential otherwise it will insert extra characters
+            vim.keymap.set('i', '<C-j>', 'copilot#Accept("<CR>")',
+                { expr = true, silent = true, replace_keycodes = false })
+            vim.keymap.set('i', '<C-k>', 'copilot#Dismiss()', { expr = true, silent = true })
+            vim.keymap.set('i', '<C-l>', 'copilot#Next()', { expr = true, silent = true })
+            vim.keymap.set('i', '<C-h>', 'copilot#AcceptLine()', { expr = true, silent = true, replace_keycodes = false })
+            vim.keymap.set('i', '<C-,>', 'copilot#Suggest()', { expr = true, silent = true })
         end
     },
 
