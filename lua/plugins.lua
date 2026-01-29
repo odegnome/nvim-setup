@@ -12,9 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    -- Java all-inclusive setup
-    -- "nvim-java/nvim-java",
-
     -- Auto pairs
     {
         "windwp/nvim-autopairs",
@@ -139,13 +136,16 @@ require("lazy").setup({
         end,
     },
 
+    -- Telescope for fuzzy finding
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
-            "nvim-lua/plenary.nvim"
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons"
         }
     },
 
+    -- GitHub Copilot
     {
         "github/copilot.vim",
         config = function()
@@ -161,10 +161,12 @@ require("lazy").setup({
         end
     },
 
+    -- Git integration
     {
         "tpope/vim-fugitive",
     },
 
+    -- Copilot chat integration
     {
         "CopilotC-Nvim/CopilotChat.nvim",
         dependencies = {
