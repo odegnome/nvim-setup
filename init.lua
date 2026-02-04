@@ -8,4 +8,4 @@ require('comment')
 
 -- setups and configs
 require('lsp')
-require('telescope')
+require('telescope-setup')

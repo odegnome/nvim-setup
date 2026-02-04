@@ -136,6 +136,8 @@ require("lazy").setup({
         end,
     },
 
+    { 'nvim-telescope/telescope-ui-select.nvim' },
+
     -- Telescope for fuzzy finding
     {
         "nvim-telescope/telescope.nvim",
