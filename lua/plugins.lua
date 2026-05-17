@@ -37,18 +37,22 @@ require("lazy").setup({
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
+        lazy = false,
         build = ":TSUpdate",
         config = function()
-            local configs = require("nvim-treesitter.configs")
+            require("nvim-treesitter").setup()
 
-            configs.setup({
-                ensure_installed = { "c", "lua", "vim", "vimdoc", "rust", "python" },
-                sync_install = false,
-                highlight = { enable = true },
-                indent = { enable = true },
-                autopairs = { enable = true },
+            require("nvim-treesitter").install({
+                "c",
+                "lua",
+                "vim",
+                "vimdoc",
+                "rust",
+                "python",
+                "markdown",
+                "markdown_inline",
             })
-        end
+        end,
     },
 
     -- Commenting plugin
@@ -158,7 +162,8 @@ require("lazy").setup({
                 { expr = true, silent = true, replace_keycodes = false })
             vim.keymap.set('i', '<C-k>', 'copilot#Dismiss()', { expr = true, silent = true })
             vim.keymap.set('i', '<C-l>', 'copilot#Next()', { expr = true, silent = true })
-            vim.keymap.set('i', '<C-h>', 'copilot#AcceptLine()', { expr = true, silent = true, replace_keycodes = false })
+            vim.keymap.set('i', '<C-h>', 'copilot#AcceptLine()',
+                { expr = true, silent = true, replace_keycodes = false, noremap = true })
             vim.keymap.set('i', '<C-,>', 'copilot#Suggest()', { expr = true, silent = true })
         end
     },

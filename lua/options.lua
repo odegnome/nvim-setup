@@ -40,7 +40,7 @@ vim.opt.backup = false
 -- Fold method
 -- =syntax works for rust, but indent with py
 -- vim.opt.foldmethod = 'indent'
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldmethod = 'syntax'
+vim.opt.foldexpr = '0'
 
 vim.diagnostic.config({ virtual_text = true })
