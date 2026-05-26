@@ -160,8 +160,8 @@ require("lazy").setup({
             -- replace_keycodes is essential otherwise it will insert extra characters
             vim.keymap.set('i', '<C-j>', 'copilot#Accept("<CR>")',
                 { expr = true, silent = true, replace_keycodes = false })
-            vim.keymap.set('i', '<C-k>', 'copilot#Dismiss()', { expr = true, silent = true })
-            vim.keymap.set('i', '<C-l>', 'copilot#Next()', { expr = true, silent = true })
+            vim.keymap.set('i', '<C-l>', 'copilot#Dismiss()', { expr = true, silent = true })
+            -- vim.keymap.set('i', '<C-l>', 'copilot#Next()', { expr = true, silent = true })
             vim.keymap.set('i', '<C-h>', 'copilot#AcceptLine()',
                 { expr = true, silent = true, replace_keycodes = false, noremap = true })
             vim.keymap.set('i', '<C-,>', 'copilot#Suggest()', { expr = true, silent = true })
